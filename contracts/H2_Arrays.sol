@@ -15,9 +15,9 @@ contract H2_Arrays {
         entries.push(val);
     }
 
-    function removeEntry(uint256 _index) public returns (uint256[] memory result) {
+    function removeEntryLeavingGaps(uint256 _index) public returns (uint256[] memory result) {
         // Ensure index is within array bounds.
-        require(_index >= 0 && _index < entries.length, "execution reverted");
+        require(_index >= 0 && _index < entries.length, "invalid index");
         delete entries[_index];
         return entries;
     }

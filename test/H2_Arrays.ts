@@ -15,7 +15,7 @@ describe("H2_Arrays", function () {
   describe("Deployment", function () {
     it("Should deploy successfully", async function () {
       const { h2ArraysContract } = await loadFixture(deployH2ArraysFixture);
-      expect(h2ArraysContract.address).to.be.a('string').and.satisfy(s => s.startsWith('0x'));
+      expect(h2ArraysContract.address).to.be.a('string').and.satisfy((s: string) => s.startsWith('0x'));
     });
   });
 
@@ -38,12 +38,12 @@ describe("H2_Arrays", function () {
     });
   });
 
-  describe("removeEntry", function () {
+  describe("removeEntryLeavingGaps", function () {
     it("Should remove an entry successfully", async function () {
       const { h2ArraysContract } = await loadFixture(deployH2ArraysFixture);
       await h2ArraysContract.write.addEntry([BigInt(42)]);
       await h2ArraysContract.write.addEntry([BigInt(24)]);
-      await h2ArraysContract.write.removeEntry([BigInt(0)]);
+      await h2ArraysContract.write.removeEntryLeavingGaps([BigInt(0)]);
       const entries = await h2ArraysContract.read.getEntries();
       expect(entries[0]).to.equal(0n);
       expect(entries[1]).to.equal(24n);
@@ -51,7 +51,7 @@ describe("H2_Arrays", function () {
 
     it("Should revert when trying to remove an entry out of bounds", async function () {
       const { h2ArraysContract } = await loadFixture(deployH2ArraysFixture);
-      await expect(h2ArraysContract.write.removeEntry([BigInt(0)])).to.be.rejectedWith("execution reverted");
+      await expect(h2ArraysContract.write.removeEntryLeavingGaps([BigInt(0)])).to.be.rejectedWith("invalid index");
     });
   });
 
