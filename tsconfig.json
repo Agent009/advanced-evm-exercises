@@ -28,6 +28,12 @@
     "noEmit": true,
     "isolatedModules": true,
     "incremental": true,
+    "declaration": true,
+    "declarationMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": ["es2020"],
+    "moduleResolution": "node",
     // Path aliases
     "baseUrl": "./",
     "paths": {
@@ -37,10 +43,11 @@
       "@ignition/*": ["ignition/*"],
       "@lib/*": ["lib/*"],
       "@scripts/*": ["scripts/*"],
-      "@test/*": ["test/*"],
+      "@test/*": ["test/*"]
     },
     "strictNullChecks": true
   },
-  "include": ["**/*.d.ts", "**/*.ts"],
-  "exclude": ["./out/**/*", "**/node_modules/**/*"]
+  "exclude": ["./out/**/*", "**/node_modules/**/*"],
+  "files": ["./hardhat.config.ts"],
+  "include": ["deploy/**/*", "scripts/**/*", "src/**/*", "tasks/**/*", "test/**/*", "types/"]
 }

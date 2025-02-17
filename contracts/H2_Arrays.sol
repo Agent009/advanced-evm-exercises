@@ -2,9 +2,7 @@
 
 pragma solidity >=0.7.0 <0.9.0;
 
-
 contract H2_Arrays {
-
     uint256[] public entries;
 
     function getEntries() public view returns (uint256[] memory result) {

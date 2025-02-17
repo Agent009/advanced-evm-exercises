@@ -1,14 +1,17 @@
 import * as dotenv from "dotenv";
+
 dotenv.config();
 
-let alchemyAPIKey = process.env.ALCHEMY_API_KEY || "";
+const alchemyAPIKey = process.env.ALCHEMY_API_KEY || "";
 export const constants = Object.freeze({
   account: {
     deployerAddress: process.env.DEPLOYER_ADDRESS || "",
     deployerPrivateKey: process.env.PRIVATE_KEY || "",
+    mnemonic: process.env.MNEMONIC || "",
   },
   contracts: {
-    swap: {
+    reportGas: process.env.REPORT_GAS === "true",
+    h2: {
       sepolia: process.env.CONTRACT_SEPOLIA || "",
     },
   },
